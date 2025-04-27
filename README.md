@@ -1,5 +1,5 @@
-# AtCoder Python 解答
+# My AtCoderr Submissions
 
-このリポジトリは、私のAtCoderプログラミングコンテストのPython解答を管理するものです。
+This is a repository for recording my submissions at AtCoder
 
-[AtCoder マイページ](https://atcoder.jp/users/suwaha1486)
+User page:[suwaha1486](https://atcoder.jp/users/suwaha1486)

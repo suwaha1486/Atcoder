@@ -2,12 +2,21 @@ n, m = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
 
-# 解けてない
+b_max = max(b)
+
+score = [-1] * (b_max + 1)
+
+r = b_max + 1
+
+for i in range(n):
+  while r > a[i]:
+    r -= 1
+    score[r] = i + 1
+
+answers = []
 
 for i in range(m):
-  for j in range(n):
-    if b[i] >= a[j]:
-      print(j+1)
-      break
-    if j == n-1:
-      print(-1)
+  answers.append(score[b[i]])
+
+for ans in answers:
+  print(ans)

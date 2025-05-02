@@ -1,29 +1,40 @@
-import itertools
-
 n, m = map(int, input().split())
 
-num_list = []
+m %= 10
+if m == 0:
+    m = 10
 
-for i in range(m):
-    num_list.append(i+1)
+'''
+なぜか31問中2問TLEになる
+num_list = [[1] * n]
 
-answer = []
-cnt = 0
-
-for pair in itertools.combinations(num_list, n):
-    a_pre = pair[0]
-    flg = True
-    for i in range(1, n):
-        if pair[i] - a_pre < 10:
-            flg = False
+tmp = [1] * n
+while True:
+    for i in reversed(range(n)):
+       if tmp[i] != m:
             break
-        else:
-            a_pre = pair[i]
+    tmp[i:] = [tmp[i] + 1] * (n-i)
+    
+    num_list.append(tmp[:])
 
-    if flg:
-        answer.append(pair)
-        cnt += 1
+    if all(x == m for x in tmp):
+        break
 
-print(cnt)
-for ans in answer:
-    print(*ans, sep=' ')
+print(len(num_list))
+for num in num_list:
+    for i in range(n):
+        num[i] += 10 * i
+    print(*num, sep=' ')
+'''
+
+from itertools import combinations_with_replacement
+num_list = list(combinations_with_replacement(range(1,m+1), n))
+
+print(len(num_list))
+for num in num_list:
+    pre = 0
+    tmp = []
+    for j in num:
+        tmp.append(j+pre)
+        pre += 10
+    print(*tmp)

@@ -33,17 +33,15 @@ for i in range(h):
 
 pre_pos = [-1] * (h * w)
 
-for exit_p in exit_point:
-    q = deque()
-    q.append(exit_p)
+q = deque(exit_point)
 
-    while len(q) > 0:
-        v = q.popleft()
-        for u in graph[v]:
-            if dist[v] + 1 < dist[u]:
-                dist[u] = dist[v] + 1
-                pre_pos[u] = v
-                q.append(u)
+while len(q) > 0:
+    v = q.popleft()
+    for u in graph[v]:
+        if dist[v] + 1 < dist[u]:
+            dist[u] = dist[v] + 1
+            pre_pos[u] = v
+            q.append(u)
 
 for i in range(h):
     for j in range(w):

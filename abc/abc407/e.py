@@ -1,26 +1,28 @@
-# WA
+# Model Solution
 
-from heapq import heappop, heappush
+from heapq import heappush, heappop
+
 t = int(input())
-for i in range(t):
+for _ in range(t):
     n = int(input())
     a = []
-    balance = 0
+    for _ in range(2 * n):
+        a.append(int(input()))
+    
+    # 最大ヒープをシミュレートするために、値を負にして最小ヒープを使用
+    heap = []
     ans = 0
-    for j in range(2 * n):
-        ai = int(input())
-        if j == 2 * n - 1:
-            break
-            
-        ans += ai
-        if j == 0:
-            balance += 1
-            continue
-        
-        if balance < 2 * n - j:
-            heappush(a, ai)
-            balance += 1
+    
+    for i in range(n):
+        if i == 0:
+            heappush(heap, -a[0])  # 最初の要素を追加
         else:
-            ans -= heappop(a)
-            balance -= 1
+            # 2つの要素を追加
+            heappush(heap, -a[2*i-1])
+            heappush(heap, -a[2*i])
+        
+        # 最大値（負の値の最小値）を取り出して合計に加算
+        v = -heappop(heap)
+        ans += v
+    
     print(ans)

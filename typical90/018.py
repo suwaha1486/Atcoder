@@ -1,3 +1,4 @@
+# ★3
 import math
 
 t = int(input())

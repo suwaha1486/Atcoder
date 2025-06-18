@@ -1,3 +1,4 @@
+# ★3
 def mod_pow(x, n, mod):
     result = 1
     while n > 0:

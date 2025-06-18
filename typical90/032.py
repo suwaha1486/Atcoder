@@ -1,3 +1,4 @@
+# ★3
 from itertools import permutations
 from collections import defaultdict
 

@@ -1,3 +1,4 @@
+# ★4
 n, k = map(int, input().split())
 
 def calc_digit_sum(x):

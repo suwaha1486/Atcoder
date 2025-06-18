@@ -1,3 +1,4 @@
+# ★4
 n = int(input())
 s = input()
 mod = 10**9 + 7

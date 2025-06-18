@@ -1,3 +1,4 @@
+# ★4
 n = int(input())
 x = [None] * n
 y = [None] * n

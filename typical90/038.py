@@ -1,3 +1,4 @@
+# ★3
 a, b = map(int, input().split())
 
 def gcd(a, b):

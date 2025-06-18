@@ -1,3 +1,4 @@
+# ★3
 from collections import defaultdict
 
 n = int(input())

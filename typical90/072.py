@@ -1,3 +1,4 @@
+# ★4
 h, w = map(int, input().split())
 c = []
 for i in range(h):

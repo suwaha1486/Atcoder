@@ -1,3 +1,4 @@
+# ★2
 n, k = input().split()
 k = int(k)
 

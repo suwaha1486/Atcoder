@@ -1,3 +1,4 @@
+# ★3
 n = int(input())
 
 def count_prime_factors(num):

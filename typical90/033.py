@@ -1,3 +1,4 @@
+# ★2
 h, w = map(int, input().split())
 
 if h == 1 or w == 1:

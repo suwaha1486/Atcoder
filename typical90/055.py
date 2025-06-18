@@ -1,3 +1,4 @@
+# ★2
 from itertools import combinations
 
 n, p, q = map(int, input().split())

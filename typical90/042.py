@@ -1,3 +1,4 @@
+# ★4
 # MA Answer
 
 k = int(input())

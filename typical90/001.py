@@ -1,3 +1,4 @@
+# ★4
 def check(x, a, k):
     cnt = 0
     tmp = 0

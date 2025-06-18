@@ -1,3 +1,4 @@
+# ★4
 # 毎回bfsでやるとTLEになるので、UnionFindを使う
 # 繋がっているかどうかを確認する場合はUnionFindを使う
 

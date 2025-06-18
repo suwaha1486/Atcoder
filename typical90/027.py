@@ -1,3 +1,4 @@
+# ★2
 n = int(input())
 
 name_set = set()

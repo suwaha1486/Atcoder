@@ -1,3 +1,4 @@
+# ★4
 n = int(input())
 
 square = [[0] * 1001 for _ in range(1001)]

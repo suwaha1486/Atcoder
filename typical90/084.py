@@ -1,3 +1,4 @@
+# ★3
 n = int(input())
 s = input()
 

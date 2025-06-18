@@ -1,3 +1,4 @@
+# ★2
 q = int(input())
 
 card = []

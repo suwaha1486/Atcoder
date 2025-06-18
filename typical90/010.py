@@ -1,3 +1,4 @@
+# ★2
 n = int(input())
 
 class1 = [0] * (n + 1)

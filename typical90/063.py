@@ -1,3 +1,4 @@
+# ★4
 from collections import defaultdict
 
 h, w = map(int, input().split())

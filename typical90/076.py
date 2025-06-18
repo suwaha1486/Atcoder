@@ -1,3 +1,4 @@
+# ★3
 import bisect
 
 n = int(input())

@@ -1,3 +1,4 @@
+# ★2
 a, b, c = map(int, input().split())
 
 def euclid_gcd(a, b):

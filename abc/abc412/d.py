@@ -2,27 +2,67 @@
 from itertools import permutations
 
 n, m = map(int, input().split())
-edges_bitmask = 0
 
-# 入力グラフをビットマスク化
+# 1. {u,v}(u<v) -> bit index を割り当てる
+edge_idx = {}
+idx = 0
+for u in range(n):
+    for v in range(u + 1, n):
+        edge_idx[(u, v)] = idx
+        idx += 1
+
+# 2. 入力グラフをビットマスク化
+original_graph = 0
 for _ in range(m):
     a, b = map(int, input().split())
-    edges_bitmask |= 1 << (a - 1) << (b - 1)
+    a -= 1
+    b -= 1
+    if a > b:
+        a, b = b, a
+    original_graph |= 1 << edge_idx[(a, b)]
 
-ans = 10**9
-# 全ての頂点の順列を生成
-for perm in permutations(range(n)):
-    # 閉路を作るために最初の頂点を最後に追加
-    perm = list(perm) + [perm[0]]
-    edges_bitmask_perm = 0
-    # 順列からグラフを作成
-    for i in range(len(perm) - 1):
-        edges_bitmask_perm |= 1 << (perm[i]) << (perm[i + 1])
-    
-    # 入力グラフと順列から作成したグラフの差分を計算
-    diff = edges_bitmask ^ edges_bitmask_perm
-    # 差分のビット数を計算
-    diff_count = bin(diff).count("1")
-    ans = min(ans, diff_count)
+ans = 10 ** 9
+
+# 3. 順列を全探索
+vertices = list(range(n))   # 順列の要素を格納するリスト
+
+# index u -> perm[u] のエッジ
+for perm in permutations(vertices):
+    # 3-1. 自己ループがあるか判定
+    self_loop = False
+    for i in range(n):
+        if perm[i] == i:
+            self_loop = True
+            break
+    if self_loop:
+        continue
+
+    # 3-2. 多重辺があるか判定
+    visited = [False] * n
+    ok = True
+    for s in vertices:
+        if visited[s]:
+            continue
+        v = s
+        length = 0
+        while not visited[v]:
+            visited[v] = True
+            v = perm[v]
+            length += 1
+        if length < 3:
+            ok = False
+            break
+    if not ok:
+        continue
+
+    # 4. 順列から無向辺集合を作る
+    mask = 0
+    for u in vertices:
+        v = perm[u]
+        if u > v:
+            u, v = v, u
+        mask |= 1 << edge_idx[(u, v)]
+
+    ans = min(ans, (original_graph ^ mask).bit_count())
 
 print(ans)

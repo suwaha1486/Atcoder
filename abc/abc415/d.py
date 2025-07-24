@@ -1,40 +1,47 @@
 import bisect
 
 n, m = map(int, input().split())
-abc = []
+ad_list = []
 for _ in range(m):
     a, b = map(int, input().split())
-    abc.append((a, b, b / a))
+    ad_list.append((a, a-b))
 
 # 今持っている瓶入りコーラで最も効率よく交換できる行動をとる（貪欲法）
-# ci =  bi / ai
-# ai <= n_bottleの中で最大のciを選択
+# diff = ai - bi
+# ai <= n_bottleの中で最大のdiffを選択
 
 # 更新式
-# diff = ai - bi
 # change_count = (n_bottle - a) // diff + 1 回交換できる
 # n_bottle -=change_count * diffとなる
 
-n_bottle = n
-total_change_count = 0
+ad_list.sort()
 
-abc.sort()
-a = [a for a, b, c in abc]
+A = [a for a, _ in ad_list]
+
+n_bottle = n
+
+min_diff = 10**18
+min_a = 0
+min_ad_list = []
+
+for i in range(m):
+    if ad_list[i][1] < min_diff:
+        min_diff = ad_list[i][1]
+        min_a = ad_list[i][0]
+
+    min_ad_list.append((min_a, min_diff))
+
+ans = 0
 
 while n_bottle > 0:
-    idx = bisect.bisect_right(a, n_bottle)
-    if idx == 0:
+    idx = bisect.bisect_right(A, n_bottle) - 1
+    if idx == -1:
         break
-    
-    possible_action = abc[0:idx]
-    max_c = max(possible_action, key=lambda x: x[2])
-    # print(max_c)
 
-    diff = max_c[0] - max_c[1]
-    change_count = (n_bottle - max_c[0]) // diff + 1
+    diff = min_ad_list[idx][1]
+    a = min_ad_list[idx][0]
+    change_count = (n_bottle - a) // diff + 1
     n_bottle -= change_count * diff
-    # print(n_bottle, change_count, diff)
+    ans += change_count
 
-    total_change_count += change_count
-
-print(total_change_count)
+print(ans)
